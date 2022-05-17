@@ -1,32 +1,102 @@
-.App {
+*, *:before, *:after {
+  -webkit-box-sizing: border-box;
+  -moz-box-sizing: border-box;
+  box-sizing: border-box;
+}
+body {
+  background-color: #0D2436;
+  color: #FFFFFF;
+  font-family: 'Roboto', sans-serif;
+}
+.container {
+}
+.grid-container {
+  display: grid;
+  column-gap: 10px;
+  row-gap: 10px;
+  /* grid-template-columns: auto auto auto; */
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  padding: 10px;
+}
+.grid-item {
+  background-color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(0, 0, 0, 0.8);
+  padding: 20px;
+  font-size: 30px;
   text-align: center;
 }
-
-.App-logo {
-  height: 15vmin;
-  pointer-events: none;
+.ballot__heading {
+  font-size: 28px;
+  text-align: center;
 }
-
-.App-header {
-  background-color: #50B074;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+.ballot__header {
+  text-transform: uppercase;
+  padding-left: 10px;
 }
+.card {
+  cursor: pointer;
 
-.App-link {
-  color: #61dafb;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.card__selected {
+  background-color: #009B86;
+}
+.ballot__image {
+  position: relative;
+}
+.ballot__image::after {
+  box-shadow: inset -5px -50px 100px -15px #000000;
+  -webkit-box-shadow: inset -5px -50px 100px -15px #000000;
+  -moz-box-shadow: inset -5px -50px 100px -15px #000000;
+  -o-box-shadow: inset -5px -50px 100px -15px #000000;
+  position: absolute;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  content: '';
+}
+.ballot__image img {
+  display: block;
+  width: 100%;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.ballot__image:hover img {
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+  -moz-opacity: 0.25;
+  -khtml-opacity: 0.25;
+  -webkit-opacity: 0.25;
+  opacity: 0.25;
+  -ms-filter: progid:DXImageTransform.Microsoft.Alpha(opacity=25);
+  filter: alpha(opacity=25);
+}
+.ballot__check {
+cursor: pointer;
+}
+.ballot__submit {
+  background-color: #34AC9C;
+  padding: 8px 15px;
+  width: 110px;
+  height: 38px;
+  text-align: center;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  cursor: pointer;
+  text-transform: uppercase;
+  color: #ffffff;
+  border: none;
+  -webkit-transition: all 0.5s ease-out;
+  -moz-transition: all 0.5s ease-out;
+  -o-transition: all 0.5s ease-out;
+  transition: all 0.5s ease-out;
+}
+.ballot__submit:hover {
+  background-color: #f52761;
 }
