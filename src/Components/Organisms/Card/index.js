@@ -1,9 +1,9 @@
 import React, {useState} from 'react';
 
-export default function Card({title, image, onclick, onchange}) {
-  // const isSelected = selected ? "selected" : "";
+export default function Card({data, title, image, selectedItem}) {
   const [selected, setSelected] = useState(false);
   const handleClick = () => {
+    selectedItem(data);
     setSelected(!selected);
   };
   return (
@@ -12,12 +12,6 @@ export default function Card({title, image, onclick, onchange}) {
         <img src={image} alt={title} />
       </div>
       <div className="ballot__title">{title}</div>
-      <input
-        type="checkbox"
-        className="ballot__check"
-        // checked={}
-        onChange={onchange}
-      />
     </div>
   );
 }

@@ -1,12 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React, { Fragment, useEffect, useState } from 'react';
 import api from '../../Api/Api';
 import Card from '../Organisms/Card';
+import Dialog from '../Organisms/Dialog';
 
 const Ballot = () => {
   const [movies, setMovies] = useState({
     loading: false,
     data: [],
   });
+  const [selectedMovies, setSelectedMovies] = useState([])
+  const [visible, setvisible] = useState(false);
+  
   useEffect(() => {
     getFetch();
   }, []);
@@ -28,8 +32,23 @@ const Ballot = () => {
       return a.indexOf(d) === i;
     });
 
+  const sdfs = (value) => {
+    console.log(`value`, value)
+    setSelectedMovies(
+      selectedMovies.concat(value)
+    );
+  };
+
+  const handleSubmit = () => {
+    setvisible(true);
+  }
+
+  const handleClose = () => {
+    setvisible(false);
+  }
+
   return (
-    <div class="container">
+    <div className="container">
       <div className="ballot">
         <h1 className="ballot__heading">AWARDS 2021</h1>
         {movies.loading ? (
@@ -39,7 +58,7 @@ const Ballot = () => {
             {movies.data.map(
               (item, index) =>
                 item.id === categoryName[index] && (
-                  <>
+                  <Fragment key={index}>
                     <h2 className="ballot__header">{item.title}</h2>
 
                     <div className="grid-container">
@@ -47,20 +66,21 @@ const Ballot = () => {
                         <Card
                           title={itemB.title}
                           image={itemB.photoUrL}
-                          // selected={}
-                          onchange={() => console.log(itemB.id)}
-                          // onClick={props.onClick}
+                          selectedItem={sdfs}
+                          data={itemB}
+                          onclick={(itemB) => sdfs(itemB)}
                           key={i}
                         />
                       ))}
                     </div>
-                  </>
+                  </Fragment>
                 )
             )}
           </>
         )}
-        <button className="ballot__submit">Submit</button>
+        <button className="ballot__submit" onClick={() => handleSubmit()}>Submit</button>
         </div>
+        <Dialog visible={visible} onclose={handleClose} data={selectedMovies} />
     </div>
   );
 };
